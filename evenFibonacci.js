@@ -5,15 +5,15 @@
     "use strict";
 
     var evenFibonacci = {
+        MAX: 4000000,
         evenTotal: 0,
 
         generate: function () {
             var num = 1;
-            var max = 4000000;
             var sequence = [num];
 
             //console.log(num);
-            while(num <= max) {
+            while(num <= this.MAX) {
                 //console.log(num);
                 sequence.push(num);
                 num = sequence[sequence.length - 1] + sequence[sequence.length - 2];
