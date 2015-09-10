@@ -72,10 +72,10 @@
 
     var test2 = new largestPrime(11); // 11
     test2.initialize();
-    test2.printValue(test1.getValue());
+    test2.printValue(test2.getValue());
 
     var test3 = new largestPrime(13195); // 29
     test3.initialize();
-    test3.printValue(test1.getValue());
+    test3.printValue(test3.getValue());
 
 })();
