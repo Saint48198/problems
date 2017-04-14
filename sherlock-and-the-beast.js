@@ -8,51 +8,54 @@
 
             numbers.forEach(function (n) {
                 var max = Math.pow(10, n) - 1;
-                var number = -1;
-                var threes = [];
-                var fives = [];
+                var value = -1;
 
-                while(max) {
-                    threes = [];
-                    fives = [];
+                var processNumber = function(number) {
+                    var threes = [];
+                    var fives = [];
 
-                    if (max.toString().length === n) {
-                        if ((/^[3]+$/.test(max.toString()) || /^[5]+$/.test(max.toString()))) {
-                            console.log(max);
-
-                            var threes = max.toString().split("").filter(function(val) {
+                    if (number.toString().length === n) {
+                        if ((/^[3]+$/.test(number.toString()) || /^[5]+$/.test(number.toString()))) {
+                            var threes = number.toString().split("").filter(function(val) {
                                 return val === "3";
                             });
 
-                            var fives = max.toString().split("").filter(function(val) {
+                            var fives = number.toString().split("").filter(function(val) {
                                 return val === "5";
                             });
 
                             if (threes.length > 4 && fives.length > 2) {
                                 if (threes.length % 5 === 0 && fives.length % 3 === 0) {
-                                    number = max;
-                                    break;
+                                    value = number;
+                                    number = 0;
                                 }
                             } else if (threes.length < 4 && fives.length > 2) {
                                 if (fives.length % 3 === 0) {
-                                    number = max;
-                                    break;
+                                    value = number;
+                                    number = 0;
                                 }
                             } else if (threes.length > 4 && fives.length < 2) {
                                 if (threes.length % 5 === 0) {
-                                    number = max;
-                                    break;
+                                    value = number;
+                                    number = 0;
                                 }
                             }
 
                         }
-                    } else {
-                        break;
-                    }
-                    max--;
-                }
 
-                console.log(number);
+                        setTimeout(function () {
+                            number--;
+                            processNumber(number);
+                        },  0);
+                    } else {
+                        console.log(value);
+                    }
+                };
+
+                processNumber(max);
+
+
+
             });
         }
     };
